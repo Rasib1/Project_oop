@@ -1,32 +1,45 @@
-#include<iostream>
+#include <iostream>
 #include "Runner.hpp"
-#include <vector>
+#include<typeinfo>
 using namespace std;
+void Runner::drawObjects()
+{
+    // call draw functions of all the objects here
+    Unit* pointer;
+    for (auto& pointer: objects){
+    //     string name = typeid(*pointer).name();
+    //     // cout<<name<<endl;
+    //     if (name == "3Bee"){
+    //         if ((((Bee*)(pointer))->deletebee()) == false){
+    //             pointer->draw();
+    //             pointer->fly();
+    //         }
+    //         else{
+    //             objects.remove(pointer);
+    //             delete pointer;
+    //         }
+    //     }
+        // else{
+            pointer->draw();
+            pointer->fly();
+        }
+    }
 
-Unit character = {{1,0,348,401}, {30, 40, 50, 50}};
-// First rectangle is srcRect, second is moverRect
-// these values are taken from the corresponding image in assets file
-// use spritecow.com to find exact values of other asset images
+// }
 
 
-
-vector<Unit> characters;
-
-
-void drawObjects(SDL_Renderer* gRenderer, SDL_Texture* Hmove1){
-    SDL_RenderCopy(gRenderer, Hmove1, &character.srcRect, &character.moverRect);
-
-
-    // TODO: Write code to iterate over all the vectors and draw objects here: 
-    
-    
-    character.moverRect.x+=2; // moves the object two pixel towards right
-    // changing the srcRect to other positions of pigeon will make the running animation
-    // SDL_RenderPresent is already called in game.cpp file, you don't need to call here
+// creates new objects 
+void Runner::createObject(int x, int y)
+{
+    std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
+    Unit* object = o.getObject(x,y);
+    objects.push_back(object);
 }
 
-void createObject(int x, int y){
 
-    // TODO: create an object randomly, and push it into corresponding vector
-    std::cout<<"Mouse clicked at: "<<x<<" -- "<<y<<std::endl;
+Runner::~Runner(){
+    for (auto& b : objects){
+        delete b;
+    }
+    objects.clear();
 }
