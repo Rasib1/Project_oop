@@ -2,6 +2,13 @@
 #include "Runner.hpp"
 #include<typeinfo>
 using namespace std;
+void Runner::move(SDL_Keycode key)
+{
+    Unit* pointer;
+    for (auto& pointer: objects){
+            pointer->move(key);
+        }
+}
 void Runner::drawObjects()
 {
     // call draw functions of all the objects here
@@ -21,7 +28,7 @@ void Runner::drawObjects()
     //     }
         // else{
             pointer->draw();
-            pointer->fly();
+            //pointer->fly();
         }
     }
 

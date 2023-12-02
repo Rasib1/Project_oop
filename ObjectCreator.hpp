@@ -11,4 +11,3 @@ class ObjectCreator{
     public:
     Unit* getObject(int x, int y);
 };
-

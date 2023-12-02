@@ -121,6 +121,7 @@ SDL_Texture* Game::loadTexture( std::string path )
 }
 void Game::run( )
 {
+	bool once = true;
 	bool quit = false;
 	SDL_Event e;
 
@@ -133,23 +134,35 @@ void Game::run( )
 		{
 			//User requests quit
 			if( e.type == SDL_QUIT )
-			{
-				quit = true;
-			}
-
-			if(e.type == SDL_MOUSEBUTTONDOWN){
-			//this is a good location to add pigeon in linked list.
-				int xMouse, yMouse;
-				SDL_GetMouseState(&xMouse,&yMouse);
-				runner.createObject(xMouse, yMouse);
-			}
+					{
+						quit = true;
+					}
+					if(e.type == SDL_KEYDOWN)	
+					{
+						runner.move( e.key.keysym.sym);
+					}
+						//runner.fly( e.key.keysym.sym);
 		}
 
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
 
+
+
 		runner.drawObjects();
+		if(once == true)
+		{
+			runner.createObject(20, 398);
+			once = false;
+		}
+		// else
+		// {
+		// 	runner.createObject()
+
+		// }
+
+		
 
 		//****************************************************************
     	SDL_RenderPresent(Drawing::gRenderer); //displays the updated renderer

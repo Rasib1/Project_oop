@@ -15,5 +15,6 @@ class Unit{
         int frame = 0;
 public:
 void draw();
-void virtual fly();
+void virtual move(SDL_Keycode key);
+void virtual move(int x, int y);
 };

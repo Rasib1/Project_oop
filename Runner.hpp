@@ -22,6 +22,7 @@ class Runner{
     
     void drawObjects(); 
     void createObject(int, int);
+    void move( SDL_Keycode key);
     ~Runner();
     // create destructor which deletes all dynamic objects
 };
