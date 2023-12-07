@@ -1,6 +1,7 @@
 #include<SDL.h>
 #include "drawing.hpp"
 #include <iostream>
+#include <vector>
 
 #pragma once
 
@@ -13,8 +14,9 @@ class Unit{
     protected:
         SDL_Rect srcRect, moverRect;
         int frame = 0;
+        // vector<SDL_Rect> srcRectVector;
 public:
-void draw();
+void virtual draw();
 void virtual move(SDL_Keycode key);
-void virtual move(int x, int y);
+void virtual move();
 };

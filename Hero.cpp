@@ -3,10 +3,10 @@
 
 
 // in project implementation this draw function should only be in superclass
-// void Hero::draw(){
-//     // if sr
-//     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
-// }
+void Hero::draw(){
+    // if sr
+    SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
+}
 // Unit* Hero::getObject(int x, int y){
 //     // int random = rand()%3;
 //     Unit* p =  nullptr;
@@ -204,6 +204,10 @@ Hero::Hero(){
     moverRect = {30, 40, 50, 50};
 }
 
+// void Hero::move()
+// {
+//     cout<<"noth"<<endl;
+// }
 Hero::Hero(int x , int y){
     // src coorinates from assets.png file, they have been found using spritecow.com
     srcRect = {8,432,279,862};

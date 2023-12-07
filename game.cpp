@@ -4,6 +4,8 @@
 
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
+SDL_Texture* Drawing::assets2 = NULL;
+
 
 bool Game::init()
 {
@@ -26,7 +28,7 @@ bool Game::init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "HU Mania", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "Runner", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -67,8 +69,10 @@ bool Game::loadMedia()
 	bool success = true;
 	
 	Drawing::assets = loadTexture("assets.png");
+	Drawing::assets2 = loadTexture("assets2.png");
+
     gTexture = loadTexture("background.png");
-	if(Drawing::assets==NULL || gTexture==NULL)
+	if(Drawing::assets==NULL|| Drawing::assets2==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
@@ -80,7 +84,11 @@ void Game::close()
 {
 	//Free loaded images
 	SDL_DestroyTexture(Drawing::assets);
+	SDL_DestroyTexture(Drawing::assets2);
+
 	Drawing::assets=NULL;
+	Drawing::assets2=NULL;
+
 	SDL_DestroyTexture(gTexture);
 	
 	//Destroy window
@@ -121,11 +129,13 @@ SDL_Texture* Game::loadTexture( std::string path )
 }
 void Game::run( )
 {
+	int count=0;
 	bool once = true;
 	bool quit = false;
 	SDL_Event e;
 
 	Runner runner;
+	// runner.CreateEnemy();
 
 	while( !quit )
 	{
@@ -143,24 +153,27 @@ void Game::run( )
 					}
 						//runner.fly( e.key.keysym.sym);
 		}
-
+		runner.move();
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
 
 
-
+		count += 1;
 		runner.drawObjects();
+		// runner.drawEnemy();
+		// runner.drawEnemy(Drawing assets2);
+		runner.drawEnemy();
 		if(once == true)
 		{
 			runner.createObject(20, 398);
 			once = false;
 		}
-		// else
-		// {
-		// 	runner.createObject()
+		else if(count % 20 == 0)
+		{
+			runner.CreateEnemy(800,400);
 
-		// }
+		}
 
 		
 

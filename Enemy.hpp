@@ -10,7 +10,7 @@ class Enemy: public Unit{
 public:
     // add the fly function here as well.
     void draw();
-    void move(int x, int y);
+    void move();
     Enemy(); 
     Enemy(int x, int y);
     // may add other overloaded constructors here... 
