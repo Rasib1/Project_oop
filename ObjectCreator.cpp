@@ -22,6 +22,17 @@ Unit* ObjectCreator::getenemy(int x, int y){
     return q;
  
 }
+
+Unit* ObjectCreator::getHo(int x, int y){
+    // int random = rand()%3;
+    Unit* h =  nullptr;
+    // switch(random){
+    //     case 0:
+        h = new Hobject(x,y);
+
+    return h;
+ 
+}
 // Hero* ObjectCreator::gethero(int x, int y){
 //     // int random = rand()%3;
 //     Hero* p =  nullptr;

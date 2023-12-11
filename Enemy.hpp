@@ -11,6 +11,7 @@ public:
     // add the fly function here as well.
     void draw();
     void move();
+    SDL_Rect getnew_moverect();
     Enemy(); 
     Enemy(int x, int y);
     // may add other overloaded constructors here... 

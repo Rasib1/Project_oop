@@ -7,6 +7,8 @@ class Drawing{
     //global reference to png image sheets
     static SDL_Texture* assets;
     static SDL_Texture* assets2;
+    static SDL_Texture* assets3;
+
 
 
 };

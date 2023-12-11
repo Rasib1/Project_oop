@@ -5,6 +5,8 @@
 SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
 SDL_Texture* Drawing::assets2 = NULL;
+SDL_Texture* Drawing::assets3 = NULL;
+
 
 
 bool Game::init()
@@ -70,9 +72,11 @@ bool Game::loadMedia()
 	
 	Drawing::assets = loadTexture("assets.png");
 	Drawing::assets2 = loadTexture("assets2.png");
+	Drawing::assets3 = loadTexture("assets3.png");
+
 
     gTexture = loadTexture("background.png");
-	if(Drawing::assets==NULL|| Drawing::assets2==NULL || gTexture==NULL)
+	if(Drawing::assets==NULL|| Drawing::assets2==NULL || Drawing::assets3==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
@@ -85,9 +89,13 @@ void Game::close()
 	//Free loaded images
 	SDL_DestroyTexture(Drawing::assets);
 	SDL_DestroyTexture(Drawing::assets2);
+	SDL_DestroyTexture(Drawing::assets3);
+
 
 	Drawing::assets=NULL;
 	Drawing::assets2=NULL;
+	Drawing::assets3=NULL;
+
 
 	SDL_DestroyTexture(gTexture);
 	
@@ -154,6 +162,7 @@ void Game::run( )
 						//runner.fly( e.key.keysym.sym);
 		}
 		runner.move();
+		// runner.moveobject();
 		SDL_RenderClear(Drawing::gRenderer); //removes everything from renderer
 		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
@@ -164,6 +173,9 @@ void Game::run( )
 		// runner.drawEnemy();
 		// runner.drawEnemy(Drawing assets2);
 		runner.drawEnemy();
+		runner.drawHo();
+
+
 		if(once == true)
 		{
 			runner.createObject(20, 398);
@@ -171,8 +183,20 @@ void Game::run( )
 		}
 		else if(count % 20 == 0)
 		{
-			runner.CreateEnemy(800,400);
+			cout<<"New Enemy Created"<<endl;
+			runner.CreateEnemy(900,400);
 
+		}
+		else if(count % 10 == 0)
+		{
+			cout<<"New Hobject Created"<<endl;
+			runner.CreateHo(900,200);
+
+		}
+		if(runner.DetectCollision())
+		{
+
+				quit = true;
 		}
 
 		

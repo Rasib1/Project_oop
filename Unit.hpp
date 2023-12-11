@@ -17,6 +17,9 @@ class Unit{
         // vector<SDL_Rect> srcRectVector;
 public:
 void virtual draw();
+virtual SDL_Rect getnew_moverect() const;
 void virtual move(SDL_Keycode key);
 void virtual move();
+// void virtual moveobject();
+
 };

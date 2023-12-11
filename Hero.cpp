@@ -32,7 +32,7 @@ void Hero::draw(){
 // fly() is overrided from the superclass
 void Hero::move(SDL_Keycode key){
     // 
-    cout<<"here"<<endl;
+    // cout<<"here"<<endl;
     // moverRect.x += 5;
     if (key == SDLK_UP){
         if (srcRect.x == 8 ){
@@ -53,11 +53,11 @@ void Hero::move(SDL_Keycode key){
         if (moverRect.y>=0){
             moverRect.y-=10;
         }
-        else{
-            srcRect = {8,432,279,862};
+        // else{
+        //     srcRect = {8,432,279,862};
 
-            moverRect.x = 0;
-        }
+        //     moverRect.x = 0;
+        // }
     }
     else if (key == SDLK_DOWN) {
         // if (srcRect.x == 276 ){
@@ -96,11 +96,11 @@ void Hero::move(SDL_Keycode key){
         if (moverRect.y<=520){
             moverRect.y+=10;
         }
-        else{
-            srcRect = {8,432,279,862};
+        // else{
+        //     srcRect = {8,432,279,862};
 
-            moverRect.x = 0;
-        }
+        //     moverRect.x = 0;
+        // }
     }
 
     else if (key == SDLK_RIGHT) {
@@ -141,11 +141,11 @@ void Hero::move(SDL_Keycode key){
         if (moverRect.x<=1000){
             moverRect.x+=10;
         }
-        else{
-            srcRect = {8,432,279,862};
+        // else{
+        //     srcRect = {8,432,279,862};
 
-            moverRect.x = 0;
-        }
+        //     moverRect.x = 0;
+        // }
 
 
     }
@@ -183,17 +183,21 @@ void Hero::move(SDL_Keycode key){
         if (moverRect.x>=0){
             moverRect.x-=10;
         }
-        else{
-            srcRect = {8,432,279,862};
+        // else{
+        //     srcRect = {8,432,279,862};
 
-            moverRect.x = 0;
-        }
+        //     moverRect.x = 0;
+        // }
     }
 
 
 
 }
+SDL_Rect Hero::getnew_moverect()
+{
+    return moverRect;
 
+}
 Hero::Hero(){
     // src coorinates from assets.png file, they have been found using spritecow.com
     srcRect = {8,432,279,862};
@@ -202,6 +206,8 @@ Hero::Hero(){
 
     // it will display pigeon on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
     moverRect = {30, 40, 50, 50};
+    // moverRect = {x, y, 50, 50};
+
 }
 
 // void Hero::move()
@@ -211,6 +217,7 @@ Hero::Hero(){
 Hero::Hero(int x , int y){
     // src coorinates from assets.png file, they have been found using spritecow.com
     srcRect = {8,432,279,862};
+    // moverRect = getnew_moverect();
 
 
     // it will display pigeon on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
