@@ -51,7 +51,7 @@ void Hero::move(SDL_Keycode key){
 
         }
         if (moverRect.y>=0){
-            moverRect.y-=10;
+            moverRect.y-=20;
         }
         // else{
         //     srcRect = {8,432,279,862};
@@ -93,8 +93,8 @@ void Hero::move(SDL_Keycode key){
         // srcRect = {276,412,642,818};
 
         }
-        if (moverRect.y<=520){
-            moverRect.y+=10;
+        if (moverRect.y<=400){
+            moverRect.y+=20;
         }
         // else{
         //     srcRect = {8,432,279,862};
@@ -138,8 +138,8 @@ void Hero::move(SDL_Keycode key){
         // srcRect = {276,412,642,818};
 
         }
-        if (moverRect.x<=1000){
-            moverRect.x+=10;
+        if (moverRect.x<=950){
+            moverRect.x+=20;
         }
         // else{
         //     srcRect = {8,432,279,862};
@@ -181,7 +181,7 @@ void Hero::move(SDL_Keycode key){
 
         }
         if (moverRect.x>=0){
-            moverRect.x-=10;
+            moverRect.x-=20;
         }
         // else{
         //     srcRect = {8,432,279,862};

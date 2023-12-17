@@ -5,7 +5,8 @@
 #include<list>
 #include "Unit.hpp"
 #include "horizontalobject1.hpp"
-
+#include "fireObject.hpp"
+#include "plentobject.hpp"
 #include "ObjectCreator.hpp"
 #pragma once
 
@@ -15,15 +16,26 @@ class Runner{
     vector<Unit*> objects;
     vector<Unit*> enemy;
     vector<Unit*> hobject;
+    vector<Unit*> fobject;
+    vector<Unit*> pobject;
+
+
     
 
     ObjectCreator o;
     ObjectCreator ho;
     ObjectCreator e;
+    ObjectCreator fo;
+    ObjectCreator po;
+
+
 
     Hero h1;
     Enemy e1;
     Hobject hobj;
+    Fire fobj;
+    Plent pobj;
+
 
 
     // Hero h;
@@ -43,6 +55,11 @@ class Runner{
     void drawHo();
     void CreateHo(int, int);
 
+    void drawfire();
+    void Createfire(int, int);
+
+    void drawplent();
+    void Createplent(int, int);
     // bool CollisionC(  SDL_Rect moverRect_A,   SDL_Rect moverRect_B);
 
     bool DetectCollision();

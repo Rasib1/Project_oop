@@ -18,6 +18,12 @@ void Runner::move()
     for (auto& point: hobject ){
             point->move();
         }
+    for (auto& point: fobject ){
+            point->move();
+        }
+    for (auto& point: pobject ){
+            point->move();
+        }
 }
 
 // void Runner::move()
@@ -69,6 +75,29 @@ void Runner::drawHo()
 
 }
 
+void Runner::drawfire()
+{
+        Unit* point;
+    for (auto& point: fobject){
+    //     string name = typeid(*pointer).name();
+
+            point->draw();
+            //pointer->fly();
+        }
+
+}
+
+void Runner::drawplent()
+{
+        Unit* point;
+    for (auto& point: pobject){
+    //     string name = typeid(*pointer).name();
+
+            point->draw();
+            //pointer->fly();
+        }
+
+}
 // creates new objects 
 void Runner::createObject(int x, int y)
 {
@@ -96,6 +125,25 @@ void Runner::CreateHo(int x , int y)
     // return enemy;
 }
 
+void Runner::Createfire(int x , int y)
+{
+    std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
+    // Unit* object = new Enemy(x, y);
+    Unit* fireobj = fo.getfire(x,y);
+    fobject.push_back(fireobj);
+    
+    // return enemy;
+}
+
+void Runner::Createplent(int x , int y)
+{
+    std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
+    // Unit* object = new Enemy(x, y);
+    Unit* plentobj = po.getplent(x,y);
+    pobject.push_back(plentobj);
+    
+    // return enemy;
+}
 // bool Runner::CollisionC(  SDL_Rect moverRect_A,   SDL_Rect moverRect_B)
 // {
 
@@ -165,6 +213,7 @@ bool Runner::DetectCollision()
     SDL_Rect x = h1.getnew_moverect();
     Enemy* point;
     Hobject* point2;
+    Fire* point3;
 
     for (auto& point: enemy)
     {
@@ -190,14 +239,42 @@ bool Runner::DetectCollision()
         SDL_Rect hero_rect = objects[0]->getnew_moverect();
         cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
         cout<<"hero: ("<<hero_rect.x<<','<<hero_rect.y<<')'<<endl;
-        int tolerance = 46; // adjust to set colision tolerance/AREA
+        int tolerance = 50; // adjust to set colision tolerance/AREA
         if( (object_rect.y-hero_rect.y<tolerance && object_rect.y-hero_rect.y>-tolerance) && (object_rect.x-hero_rect.x<tolerance && object_rect.x-hero_rect.x>-tolerance))
         {
             return true;
         }
 
     }
+        for (auto& point3: fobject)
+    {
+        //cout<<"called coldetech"<< endl;
+        SDL_Rect object_rect = point3->getnew_moverect();
+        SDL_Rect fire_rect = objects[0]->getnew_moverect();
+        cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
+        cout<<"hero: ("<<fire_rect.x<<','<<fire_rect.y<<')'<<endl;
+        int tolerance = 39; // adjust to set colision tolerance/AREA
+        if( (object_rect.y-fire_rect.y<tolerance && object_rect.y-fire_rect.y>-tolerance) && (object_rect.x-fire_rect.x<tolerance && object_rect.x-fire_rect.x>-tolerance))
+        {
+            return true;
+        }
 
+    }
+
+        for (auto& point4: pobject)
+    {
+        //cout<<"called coldetech"<< endl;
+        SDL_Rect object_rect = point4->getnew_moverect();
+        SDL_Rect plent_rect = objects[0]->getnew_moverect();
+        cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
+        cout<<"hero: ("<<plent_rect.x<<','<<plent_rect.y<<')'<<endl;
+        int tolerance = 60; // adjust to set colision tolerance/AREA
+        if( (object_rect.y-plent_rect.y<tolerance && object_rect.y-plent_rect.y>-tolerance) && (object_rect.x-plent_rect.x<tolerance && object_rect.x-plent_rect.x>-tolerance))
+        {
+            return true;
+        }
+
+    }
 
 
 }

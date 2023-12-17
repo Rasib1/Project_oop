@@ -6,6 +6,10 @@ SDL_Renderer* Drawing::gRenderer = NULL;
 SDL_Texture* Drawing::assets = NULL;
 SDL_Texture* Drawing::assets2 = NULL;
 SDL_Texture* Drawing::assets3 = NULL;
+SDL_Texture* Drawing::assets4 = NULL;
+SDL_Texture* Drawing::assets5 = NULL;
+
+
 
 
 
@@ -73,10 +77,14 @@ bool Game::loadMedia()
 	Drawing::assets = loadTexture("assets.png");
 	Drawing::assets2 = loadTexture("assets2.png");
 	Drawing::assets3 = loadTexture("assets3.png");
+	Drawing::assets4 = loadTexture("assets4.png");
+	Drawing::assets5 = loadTexture("assets5.png");
+
+
 
 
     gTexture = loadTexture("background.png");
-	if(Drawing::assets==NULL|| Drawing::assets2==NULL || Drawing::assets3==NULL || gTexture==NULL)
+	if(Drawing::assets==NULL|| Drawing::assets2==NULL || Drawing::assets3==NULL ||Drawing::assets4==NULL || Drawing::assets5==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
@@ -90,11 +98,19 @@ void Game::close()
 	SDL_DestroyTexture(Drawing::assets);
 	SDL_DestroyTexture(Drawing::assets2);
 	SDL_DestroyTexture(Drawing::assets3);
+	SDL_DestroyTexture(Drawing::assets4);
+	SDL_DestroyTexture(Drawing::assets5);
+
+
 
 
 	Drawing::assets=NULL;
 	Drawing::assets2=NULL;
 	Drawing::assets3=NULL;
+	Drawing::assets4=NULL;
+	Drawing::assets5=NULL;
+
+
 
 
 	SDL_DestroyTexture(gTexture);
@@ -174,6 +190,8 @@ void Game::run( )
 		// runner.drawEnemy(Drawing assets2);
 		runner.drawEnemy();
 		runner.drawHo();
+		runner.drawfire();
+		runner.drawplent();
 
 
 		if(once == true)
@@ -184,15 +202,27 @@ void Game::run( )
 		else if(count % 20 == 0)
 		{
 			cout<<"New Enemy Created"<<endl;
-			runner.CreateEnemy(900,400);
+			runner.CreateEnemy(950,398);
 
 		}
 		else if(count % 10 == 0)
 		{
 			cout<<"New Hobject Created"<<endl;
-			runner.CreateHo(900,200);
+			runner.CreateHo(950,200);
 
 		}
+		else if(count % 15 == 0)
+		{
+			cout<<"New fobject Created"<<endl;
+			runner.Createfire(20,300);
+		}
+		else if(count % 5 == 0)
+		{
+			cout<<"New pobject Created"<<endl;
+			runner.Createplent(20,70);
+		}
+
+
 		if(runner.DetectCollision())
 		{
 
