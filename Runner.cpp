@@ -190,7 +190,7 @@ bool Runner::DetectCollision()
         SDL_Rect hero_rect = objects[0]->getnew_moverect();
         cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
         cout<<"hero: ("<<hero_rect.x<<','<<hero_rect.y<<')'<<endl;
-        int tolerance = 50; // adjust to set colision tolerance/AREA
+        int tolerance = 46; // adjust to set colision tolerance/AREA
         if( (object_rect.y-hero_rect.y<tolerance && object_rect.y-hero_rect.y>-tolerance) && (object_rect.x-hero_rect.x<tolerance && object_rect.x-hero_rect.x>-tolerance))
         {
             return true;
