@@ -180,7 +180,7 @@ void Hero::move(SDL_Keycode key){
         // srcRect = {276,412,642,818};
 
         }
-        if (moverRect.x>=0){
+        if (moverRect.x>=10){
             moverRect.x-=20;
         }
         // else{

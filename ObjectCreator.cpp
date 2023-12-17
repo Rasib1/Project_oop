@@ -55,6 +55,18 @@ Unit* ObjectCreator::getplent(int x, int y){
     return pl;
  
 }
+
+
+Unit* ObjectCreator::getfall(int x, int y){
+    // int random = rand()%3;
+    Unit* f2 =  nullptr;
+    // switch(random){
+    //     case 0:
+        f2 = new Falling(x,y);
+
+    return f2;
+ 
+}
 // Hero* ObjectCreator::gethero(int x, int y){
 //     // int random = rand()%3;
 //     Hero* p =  nullptr;

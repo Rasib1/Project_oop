@@ -4,6 +4,8 @@
 #include "horizontalobject1.hpp"
 #include "fireObject.hpp"
 #include "plentobject.hpp"
+#include "falling.hpp"
+
 
 
 
@@ -20,6 +22,8 @@ class ObjectCreator{
     Unit* getHo(int x, int y);
     Unit* getfire(int x, int y);
     Unit* getplent(int x, int y);
+    Unit* getfall(int x, int y);
+
 
 
 

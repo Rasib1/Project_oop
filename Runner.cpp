@@ -24,6 +24,9 @@ void Runner::move()
     for (auto& point: pobject ){
             point->move();
         }
+    for (auto& point: fallobject ){
+            point->move();
+        }
 }
 
 // void Runner::move()
@@ -98,6 +101,18 @@ void Runner::drawplent()
         }
 
 }
+
+void Runner::drawfall()
+{
+        Unit* point;
+    for (auto& point: fallobject){
+    //     string name = typeid(*pointer).name();
+
+            point->draw();
+            //pointer->fly();
+        }
+
+}
 // creates new objects 
 void Runner::createObject(int x, int y)
 {
@@ -141,6 +156,16 @@ void Runner::Createplent(int x , int y)
     // Unit* object = new Enemy(x, y);
     Unit* plentobj = po.getplent(x,y);
     pobject.push_back(plentobj);
+    
+    // return enemy;
+}
+
+void Runner::Createfall(int x , int y)
+{
+    std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
+    // Unit* object = new Enemy(x, y);
+    Unit* fall = fa.getfall(x,y);
+    fallobject.push_back(fall);
     
     // return enemy;
 }
@@ -268,7 +293,7 @@ bool Runner::DetectCollision()
         SDL_Rect plent_rect = objects[0]->getnew_moverect();
         cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
         cout<<"hero: ("<<plent_rect.x<<','<<plent_rect.y<<')'<<endl;
-        int tolerance = 60; // adjust to set colision tolerance/AREA
+        int tolerance = 38; // adjust to set colision tolerance/AREA
         if( (object_rect.y-plent_rect.y<tolerance && object_rect.y-plent_rect.y>-tolerance) && (object_rect.x-plent_rect.x<tolerance && object_rect.x-plent_rect.x>-tolerance))
         {
             return true;
@@ -276,7 +301,20 @@ bool Runner::DetectCollision()
 
     }
 
+        for (auto& point5: fallobject)
+    {
+        //cout<<"called coldetech"<< endl;
+        SDL_Rect object_rect = point5->getnew_moverect();
+        SDL_Rect fall_rect = objects[0]->getnew_moverect();
+        cout<<"object: ("<<object_rect.x<<','<<object_rect.y<<')'<<endl;
+        cout<<"hero: ("<<fall_rect.x<<','<<fall_rect.y<<')'<<endl;
+        int tolerance = 38; // adjust to set colision tolerance/AREA
+        if( (object_rect.y-fall_rect.y<tolerance && object_rect.y-fall_rect.y>-tolerance) && (object_rect.x-fall_rect.x<tolerance && object_rect.x-fall_rect.x>-tolerance))
+        {
+            return true;
+        }
 
+    }
 }
 
 Runner::~Runner(){

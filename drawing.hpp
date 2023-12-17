@@ -10,6 +10,8 @@ class Drawing{
     static SDL_Texture* assets3;
     static SDL_Texture* assets4;
     static SDL_Texture* assets5;
+    static SDL_Texture* assets6;
+
 
 
 

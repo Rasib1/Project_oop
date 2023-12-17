@@ -16,16 +16,16 @@ void Plent::move(){
     // 
     // moverRect.x += 5;
 if (srcRect.x == 540 ){
-    srcRect = {59,89,129,158};
+    srcRect = {61,92,129,158};
 }
-else if (srcRect.x == 378){
-    srcRect = {217,90,286,157};
+else if (srcRect.x == 382){
+    srcRect = {218,88,285,160};
 }
-else if (srcRect.x == 217){
-    srcRect = {378,89,450,157};
+else if (srcRect.x == 218){
+    srcRect = {382,90,445,157};
 }
-else if (srcRect.x == 59){
-    srcRect = {540,88,607,158};
+else if (srcRect.x == 61){
+    srcRect = {540,90,604,155};
 }
  if (moverRect.x>=0){
             moverRect.x+=10;
@@ -47,7 +47,7 @@ Plent::Plent(){
     // src coorinates from assets.png file, they have been found using spritecow.com
     // srcRect = {85,550,300,705};
     // srcRect = {33,31,62,63};
-    srcRect = {540,88,607,158};
+    srcRect = {540,90,604,155};
 
 
 
@@ -59,7 +59,7 @@ Plent::Plent(int x , int y){
     // src coorinates from assets.png file, they have been found using spritecow.com
     // srcRect = {85,550,300,705};
     // srcRect = {33,31,62,63};
-    srcRect = {540,88,607,158};
+    srcRect = {540,90,604,155};
 
 
 

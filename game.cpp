@@ -8,6 +8,8 @@ SDL_Texture* Drawing::assets2 = NULL;
 SDL_Texture* Drawing::assets3 = NULL;
 SDL_Texture* Drawing::assets4 = NULL;
 SDL_Texture* Drawing::assets5 = NULL;
+SDL_Texture* Drawing::assets6 = NULL;
+
 
 
 
@@ -79,12 +81,14 @@ bool Game::loadMedia()
 	Drawing::assets3 = loadTexture("assets3.png");
 	Drawing::assets4 = loadTexture("assets4.png");
 	Drawing::assets5 = loadTexture("assets5.png");
+	Drawing::assets6 = loadTexture("assets6.png");
+
 
 
 
 
     gTexture = loadTexture("background.png");
-	if(Drawing::assets==NULL|| Drawing::assets2==NULL || Drawing::assets3==NULL ||Drawing::assets4==NULL || Drawing::assets5==NULL || gTexture==NULL)
+	if(Drawing::assets==NULL|| Drawing::assets2==NULL || Drawing::assets3==NULL ||Drawing::assets4==NULL ||Drawing::assets6==NULL || Drawing::assets5==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
@@ -100,6 +104,8 @@ void Game::close()
 	SDL_DestroyTexture(Drawing::assets3);
 	SDL_DestroyTexture(Drawing::assets4);
 	SDL_DestroyTexture(Drawing::assets5);
+	SDL_DestroyTexture(Drawing::assets6);
+
 
 
 
@@ -109,6 +115,8 @@ void Game::close()
 	Drawing::assets3=NULL;
 	Drawing::assets4=NULL;
 	Drawing::assets5=NULL;
+	Drawing::assets6=NULL;
+
 
 
 
@@ -154,6 +162,8 @@ SDL_Texture* Game::loadTexture( std::string path )
 void Game::run( )
 {
 	int count=0;
+	// int count2=0;
+
 	bool once = true;
 	bool quit = false;
 	SDL_Event e;
@@ -185,6 +195,8 @@ void Game::run( )
 
 
 		count += 1;
+		// count2 += 1;
+
 		runner.drawObjects();
 		// runner.drawEnemy();
 		// runner.drawEnemy(Drawing assets2);
@@ -192,6 +204,7 @@ void Game::run( )
 		runner.drawHo();
 		runner.drawfire();
 		runner.drawplent();
+		runner.drawfall();
 
 
 		if(once == true)
@@ -202,25 +215,45 @@ void Game::run( )
 		else if(count % 20 == 0)
 		{
 			cout<<"New Enemy Created"<<endl;
-			runner.CreateEnemy(950,398);
+			runner.CreateEnemy(1000,398);
 
 		}
 		else if(count % 10 == 0)
 		{
 			cout<<"New Hobject Created"<<endl;
-			runner.CreateHo(950,200);
+			runner.CreateHo(1000,200);
 
 		}
 		else if(count % 15 == 0)
 		{
 			cout<<"New fobject Created"<<endl;
-			runner.Createfire(20,300);
+			runner.Createfire(0,300);
 		}
 		else if(count % 5 == 0)
 		{
 			cout<<"New pobject Created"<<endl;
-			runner.Createplent(20,70);
+			runner.Createplent(0,70);
 		}
+
+		else if(count % 20 == 1)
+		{
+			cout<<"New pobject Created"<<endl;
+			runner.Createfall(400,400);
+		}
+		else if(count % 18 == 0)
+		{
+			cout<<"New pobject Created"<<endl;
+			runner.Createfall(100,400);
+		}
+
+		else if(count % 21 == 0)
+		{
+			cout<<"New pobject Created"<<endl;
+			runner.Createfall(800,400);
+		}
+
+
+		
 
 
 		if(runner.DetectCollision())

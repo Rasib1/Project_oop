@@ -8,6 +8,8 @@
 #include "fireObject.hpp"
 #include "plentobject.hpp"
 #include "ObjectCreator.hpp"
+#include "falling.hpp"
+
 #pragma once
 
 using namespace std;
@@ -18,6 +20,8 @@ class Runner{
     vector<Unit*> hobject;
     vector<Unit*> fobject;
     vector<Unit*> pobject;
+    vector<Unit*> fallobject;
+
 
 
     
@@ -27,6 +31,8 @@ class Runner{
     ObjectCreator e;
     ObjectCreator fo;
     ObjectCreator po;
+    ObjectCreator fa;
+
 
 
 
@@ -35,6 +41,9 @@ class Runner{
     Hobject hobj;
     Fire fobj;
     Plent pobj;
+    Falling faobj;
+
+
 
 
 
@@ -60,6 +69,9 @@ class Runner{
 
     void drawplent();
     void Createplent(int, int);
+
+    void drawfall();
+    void Createfall(int, int);
     // bool CollisionC(  SDL_Rect moverRect_A,   SDL_Rect moverRect_B);
 
     bool DetectCollision();
